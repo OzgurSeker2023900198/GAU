@@ -228,7 +228,7 @@ engine = load_engine()
 # ==============================================================================
 st.set_page_config(page_title="GAU AI - Kariyer Rehberi", layout="centered")
 st.title("🎓 Lisans Programı Öneri Sistemi")
-st.caption("Makine Öğrenmesi Tabanlı Akıllı Karar Destek Sistemi")
+st.caption("Gelişimsel Akademik Uyum (GAU) | Makine Öğrenmesi Tabanlı Akıllı Karar Destek Sistemi")
 
 gonul_bolum = st.text_input("Gönlünüzden geçen lisans programı nedir?", placeholder="Örn: İstatistik")
 st.markdown("---")
