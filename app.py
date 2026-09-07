@@ -233,7 +233,7 @@ st.caption("Gelişimsel Akademik Uyum (GAU) | Makine Öğrenmesi Tabanlı Akıll
 gonul_bolum = st.text_input("Gönlünüzden geçen lisans programı nedir?", placeholder="Örn: İstatistik")
 st.markdown("---")
 
-mod = st.radio("Mod:", ("Hızlı Öneri (Gini-20)", "Kapsamlı Öneri (Hibrit-108)"), horizontal=True)
+mod = st.radio("Model:", ("Hızlı Öneri (Gini-20)", "Kapsamlı Öneri (Hibrit-108)"), horizontal=True)
 
 temiz = [f for f in engine['features'] if f not in ['bolum_sec', 'ABMO_TOTAL', 'cinsiyet', 'cinsiyet_raw']]
 if "Hızlı" in mod:
