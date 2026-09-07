@@ -233,7 +233,7 @@ st.caption("Veri Bilimi ve AI Tabanlı Karar Destek Mekanizması")
 gonul_bolum = st.text_input("Gönlünüzden geçen lisans programı nedir?", placeholder="Örn: İstatistik")
 st.markdown("---")
 
-mod = st.radio("Mod:", ("Hızlı Öneri (Gini-20)", "Kapsamlı Öneri (Tüm Maddeler)"), horizontal=True)
+mod = st.radio("Mod:", ("Hızlı Öneri (Gini-20)", "Kapsamlı Öneri (Hibrit-108)"), horizontal=True)
 
 temiz = [f for f in engine['features'] if f not in ['bolum_sec', 'ABMO_TOTAL', 'cinsiyet', 'cinsiyet_raw']]
 if "Hızlı" in mod:
