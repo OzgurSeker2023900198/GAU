@@ -17,28 +17,12 @@ MODEL_NAME = 'gemini-1.5-flash'
 llm_model = genai.GenerativeModel(MODEL_NAME)
 
 def get_ai_interpretation(bolum, maddeler, gonul):
-    # AI'yı "Atıf yapan bir öğrenci"den "Uzman bir Mentör"e dönüştüren yeni prompt
-    prompt = f"""
-    Sen, mesleki rehberlik ve kariyer planlama konularında uzmanlaşmış, Deniz (2008) ve Horzum (2017) 
-    literatürünü özümsemiş profesyonel bir Kariyer Danışmanı Yapay Zeka'sın.
-    
-    VERİLER:
-    - Önerilen Program: {bolum}
-    - En Güçlü İlgi Kanıtları: {maddeler}
-    - Öğrencinin Kişisel Hedefi/Hayali: {gonul}
-
-    TALİMATLAR:
-    1. Kesinlikle "Deniz (2008)'e göre", "Horzum (2017) demiştir ki" gibi ifadeler kullanma.
-    2. Bu kuramları kendi uzmanlığınmış gibi içselleştirerek doğrudan tavsiye ver.
-    3. Kişisel hedef (hayal) ile model önerisi arasındaki bağı profesyonel bir dille kur.
-    4. Teknik yetkinlikler ile kişilik özelliklerini (dışa dönüklük vb.) birleştirerek bütüncül bir profil analizi sun.
-    5. Dilin otoriter, motive edici ve akademik derinliğe sahip olsun. Maksimum 4-5 cümle.
-    """
     try:
-        res = llm_model.generate_content(prompt)
-        return res.text
+        # API anahtarınızın erişebildiği tüm modelleri listeliyoruz
+        available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
+        return f"💡 SİZİN KULLANABİLECEĞİNİZ MODELLER: {', '.join(available_models)}"
     except Exception as e:
-        return f"⚠️ Yapay Zeka Hata Detayı: {str(e)} \n\n(Geçici Yanıt: İstatistiksel profiliniz ve ilgi alanlarınız, bu akademik disiplinle yüksek düzeyde pedagojik uyum sergilemektedir.)"
+        return f"Hata: {str(e)}"
 
 # ==============================================================================
 # 2. TÜRKÇE ADLAR VE ALAN HARİTASI
