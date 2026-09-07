@@ -13,7 +13,7 @@ API_KEY = "AIzaSyCSyAcidU5IhqLees4rgqRLirM3mFw9ubY"
 genai.configure(api_key=API_KEY)
 
 # Hata aldığın için model ismini en güncel haliyle güncelledim
-MODEL_NAME = 'gemini-2.5-flash' 
+MODEL_NAME = 'gemini-1.5-flash' 
 llm_model = genai.GenerativeModel(MODEL_NAME)
 
 def get_ai_interpretation(bolum, maddeler, gonul):
