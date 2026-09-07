@@ -243,7 +243,7 @@ else:
     gosterilecek = temiz
 
 kullanici_cevaplari = {}
-st.subheader("Soruları Yanıtlayınız")
+st.subheader("Aşağıdaki ifadeleri dikkatlice okuyunuz ve her birine ne derece katıldığınızı belirtmek için uygun seçeneği işaretleyiniz")
 for f in gosterilecek:
     metin = SORU_SOZLUGU.get(f, f)
     kullanici_cevaplari[f] = st.slider(metin, 1, 5, 3, key=f)
