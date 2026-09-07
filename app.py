@@ -13,7 +13,7 @@ API_KEY = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=API_KEY)
 
 # Model ismini API anahtarınızın desteklediği güncel ve stabil modelle değiştiriyoruz
-MODEL_NAME = 'gemini-3.5-flash' 
+MODEL_NAME = 'gemini-3.0-flash' 
 llm_model = genai.GenerativeModel(MODEL_NAME)
 
 def get_ai_interpretation(bolum, maddeler, gonul):
