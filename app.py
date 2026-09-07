@@ -17,6 +17,15 @@ MODEL_NAME = 'gemini-3.5-flash'
 llm_model = genai.GenerativeModel(MODEL_NAME)
 
 def get_ai_interpretation(bolum, maddeler, gonul):
+    
+    # Öğrenci kutuyu doldurduysa hayal talimatı ekle, boşsa o kuralı çıkar
+    if gonul.strip():
+        hedef_satiri = f"- Öğrencinin Kişisel Hedefi/Hayali: {gonul}"
+        hedef_kurali = "3. Kişisel hedef (hayal) ile model önerisi arasındaki bağı profesyonel bir dille kur."
+    else:
+        hedef_satiri = ""
+        hedef_kurali = "3. Öğrencinin belirginleşen ilgi alanları üzerinden, bu bölüme dair vizyoner bir kariyer hedefi çiz."
+
     prompt = f"""
     Sen, mesleki rehberlik ve kariyer planlama konularında uzmanlaşmış, Deniz (2008) ve Horzum (2017) 
     literatürünü özümsemiş profesyonel bir Kariyer Danışmanı Yapay Zeka'sın.
@@ -24,15 +33,16 @@ def get_ai_interpretation(bolum, maddeler, gonul):
     VERİLER:
     - Önerilen Program: {bolum}
     - En Güçlü İlgi Kanıtları: {maddeler}
-    - Öğrencinin Kişisel Hedefi/Hayali: {gonul}
+    {hedef_satiri}
 
     TALİMATLAR:
     1. Kesinlikle "Deniz (2008)'e göre", "Horzum (2017) demiştir ki" gibi ifadeler kullanma.
     2. Bu kuramları kendi uzmanlığınmış gibi içselleştirerek doğrudan tavsiye ver.
-    3. Kişisel hedef (hayal) ile model önerisi arasındaki bağı profesyonel bir dille kur.
+    {hedef_kurali}
     4. Teknik yetkinlikler ile kişilik özelliklerini (dışa dönüklük vb.) birleştirerek bütüncül bir profil analizi sun.
     5. Dilin otoriter, motive edici ve akademik derinliğe sahip olsun. Maksimum 4-5 cümle.
     """
+    
     try:
         res = llm_model.generate_content(prompt)
         return res.text
