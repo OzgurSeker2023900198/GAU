@@ -12,17 +12,32 @@ import google.generativeai as genai
 API_KEY = st.secrets["GEMINI_API_KEY"]
 genai.configure(api_key=API_KEY)
 
-# Hata aldığın için model ismini en güncel haliyle güncelledim
-MODEL_NAME = 'gemini-1.5-flash' 
+# Model ismini API anahtarınızın desteklediği güncel ve stabil modelle değiştiriyoruz
+MODEL_NAME = 'gemini-3.5-flash' 
 llm_model = genai.GenerativeModel(MODEL_NAME)
 
 def get_ai_interpretation(bolum, maddeler, gonul):
+    prompt = f"""
+    Sen, mesleki rehberlik ve kariyer planlama konularında uzmanlaşmış, Deniz (2008) ve Horzum (2017) 
+    literatürünü özümsemiş profesyonel bir Kariyer Danışmanı Yapay Zeka'sın.
+    
+    VERİLER:
+    - Önerilen Program: {bolum}
+    - En Güçlü İlgi Kanıtları: {maddeler}
+    - Öğrencinin Kişisel Hedefi/Hayali: {gonul}
+
+    TALİMATLAR:
+    1. Kesinlikle "Deniz (2008)'e göre", "Horzum (2017) demiştir ki" gibi ifadeler kullanma.
+    2. Bu kuramları kendi uzmanlığınmış gibi içselleştirerek doğrudan tavsiye ver.
+    3. Kişisel hedef (hayal) ile model önerisi arasındaki bağı profesyonel bir dille kur.
+    4. Teknik yetkinlikler ile kişilik özelliklerini (dışa dönüklük vb.) birleştirerek bütüncül bir profil analizi sun.
+    5. Dilin otoriter, motive edici ve akademik derinliğe sahip olsun. Maksimum 4-5 cümle.
+    """
     try:
-        # API anahtarınızın erişebildiği tüm modelleri listeliyoruz
-        available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
-        return f"💡 SİZİN KULLANABİLECEĞİNİZ MODELLER: {', '.join(available_models)}"
+        res = llm_model.generate_content(prompt)
+        return res.text
     except Exception as e:
-        return f"Hata: {str(e)}"
+        return f"⚠️ Yapay Zeka Hata Detayı: {str(e)} \n\n(Geçici Yanıt: İstatistiksel profiliniz ve ilgi alanlarınız, bu akademik disiplinle yüksek düzeyde pedagojik uyum sergilemektedir.)"
 
 # ==============================================================================
 # 2. TÜRKÇE ADLAR VE ALAN HARİTASI
