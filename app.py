@@ -38,7 +38,7 @@ def get_ai_interpretation(bolum, maddeler, gonul):
         res = llm_model.generate_content(prompt)
         return res.text
     except Exception as e:
-        return "İstatistiksel profiliniz ve ilgi alanlarınız, bu akademik disiplinle yüksek düzeyde pedagojik uyum sergilemektedir."
+        return f"⚠️ Yapay Zeka Hata Detayı: {str(e)} \n\n(Geçici Yanıt: İstatistiksel profiliniz ve ilgi alanlarınız, bu akademik disiplinle yüksek düzeyde pedagojik uyum sergilemektedir.)"
 
 # ==============================================================================
 # 2. TÜRKÇE ADLAR VE ALAN HARİTASI
